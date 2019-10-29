@@ -6,7 +6,7 @@
 /*   By: cclaude <cclaude@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 11:01:31 by cclaude           #+#    #+#             */
-/*   Updated: 2019/10/29 11:49:29 by cclaude          ###   ########.fr       */
+/*   Updated: 2019/10/29 14:35:56 by cclaude          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_putchar_minwid(char c, int width)
 
 	count = 0;
 	write(1, &c, 1);
-	while (count++ < width)
+	while (count++ < width - 1)
 		write(1, " ", 1);
 	return (width);
 }

@@ -4,12 +4,22 @@ int	main(void)
 {
 	int	lol;
 
-	dprintf(1, "Hello\n");
-	dprintf(1, "Your printf\n");
-	ft_printf("%12c\n", 'a');
-	// printf("Real printf\n");
-	// lol = printf("%c\n", 'a');
-	// printf("\n%d\n", lol);
+	printf("\n");
+	printf("Real printf\n");
+	printf("\033[33m[");
+
+	lol = printf("%-0s", "hello");
+
+	printf("]\n\033[0m");
+	printf("Returned : %d\n\n", lol);
+	printf("Your printf\n");
+	printf("\033[33m[");
+	fflush(stdout);
+
+	lol = ft_printf("%-0s", "hello");
+
+	printf("]\n\033[0m");
+	printf("Returned : %d\n\n", lol);
 	// printf("%12.c\n", 'a');
 	// printf("%12.0c\n", 'a');
 	// printf("%12.1c\n", 'a');

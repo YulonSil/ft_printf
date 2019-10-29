@@ -6,7 +6,7 @@
 /*   By: cclaude <cclaude@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 22:07:57 by cclaude           #+#    #+#             */
-/*   Updated: 2019/10/29 11:44:43 by cclaude          ###   ########.fr       */
+/*   Updated: 2019/10/29 19:12:43 by cclaude          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ int		ft_putchar_minwid(char c, int width);
 int		ft_putchar_zerowid(char c, int width);
 int		ft_putchar_wid(char c, int width);
 int		ft_putchar(char c);
+
+int		ft_strlen(char *s);
+int		ft_putstr_prewid(char *s, struct fl_gs flags);
+int		ft_putstr_wid(char *s, struct fl_gs flags);
 
 int		ft_print_char(char c, struct fl_gs flags);
 int		ft_print_str(char *s, struct fl_gs flags);

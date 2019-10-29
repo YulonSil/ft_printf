@@ -6,7 +6,7 @@
 /*   By: cclaude <cclaude@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 17:18:32 by cclaude           #+#    #+#             */
-/*   Updated: 2019/10/29 11:56:19 by cclaude          ###   ########.fr       */
+/*   Updated: 2019/10/29 16:58:24 by cclaude          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,21 @@ int		ft_atoi_star(const char *s, int *i, va_list args)
 	return (num);
 }
 
+void	ft_neg_star(struct fl_gs *flags)
+{
+	if (flags->precision < 0)
+	{
+		flags->dot = 0;
+		flags->precision = 0;
+	}
+	else if (flags->width < 0)
+	{
+		flags->minus = 1;
+		flags->width = -flags->width;
+	}
+	return ;
+}
+
 void	flagger(const char *s, int *i, struct fl_gs *flags, va_list args)
 {
 	flags->minus = 0;
@@ -75,6 +90,8 @@ void	flagger(const char *s, int *i, struct fl_gs *flags, va_list args)
 		}
 		else if (s[*i] == '*' || (s[*i] >= '1' && s[*i] <= '9'))
 			flags->width = ft_atoi_star(s, i, args);
+		if (flags->precision < 0 || flags->width < 0)
+			ft_neg_star(flags);
 		(*i)++;
 	}
 	// printf("Flag list\n");

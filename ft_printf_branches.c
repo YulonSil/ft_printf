@@ -6,7 +6,7 @@
 /*   By: cclaude <cclaude@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 20:33:10 by cclaude           #+#    #+#             */
-/*   Updated: 2019/10/29 11:50:09 by cclaude          ###   ########.fr       */
+/*   Updated: 2019/10/29 19:13:19 by cclaude          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,39 @@
 int		ft_print_char(char c, struct fl_gs flags)
 {
 	if (flags.width > 0 && flags.minus == 1)
-		return(ft_putchar_minwid(c, flags.width));
+		return (ft_putchar_minwid(c, flags.width));
 	else if (flags.width > 0 && flags.zero == 1)
-		return(ft_putchar_zerowid(c, flags.width));
+		return (ft_putchar_zerowid(c, flags.width));
 	else if (flags.width > 0)
-		return(ft_putchar_wid(c, flags.width));
+		return (ft_putchar_wid(c, flags.width));
 	else
-		return(ft_putchar(c));
+		return (ft_putchar(c));
 }
 
 int		ft_print_str(char *s, struct fl_gs flags)
 {
-	int	i;
-
-	i = 0;
-	while (s[i] != '\0')
-		write(1, &s[i++], 1);
+	if (s == NULL)
+	{
+		if (flags.width > 0 && flags.dot == 1)
+			return (ft_putstr_prewid("(null)", flags));
+		else if (flags.width > 0)
+			return (ft_putstr_wid("(null)", flags));
+		// else if (flags.dot == 1)
+		// 	return (ft_putstr_pre("(null)", flags.precision));
+		// else
+		// 	return (ft_putstr("(null)"));
+	}
+	else
+	{
+		if (flags.width > 0 && flags.dot == 1)
+			return (ft_putstr_prewid(s, flags));
+		else if (flags.width > 0)
+			return (ft_putstr_wid(s, flags));
+		// else if (flags.dot == 1)
+		// 	return (ft_putstr_pre(s, flags.precision));
+		// else
+		// 	return (ft_putstr(s));
+	}
 }
 
 int		ft_print_mem(unsigned long n, int start, struct fl_gs flags)
@@ -45,6 +62,7 @@ int		ft_print_mem(unsigned long n, int start, struct fl_gs flags)
 		ft_print_mem(n / 16, 0, flags);
 	i = n % 16;
 	write(1, &set[i], 1);
+	return (0);
 }
 
 int		ft_print_nbr(int n, struct fl_gs flags)
@@ -65,6 +83,7 @@ int		ft_print_nbr(int n, struct fl_gs flags)
 		ft_print_nbr(n / 10, flags);
 	c = n % 10 + '0';
 	write(1, &c, 1);
+	return (0);
 }
 
 int		ft_print_uns(unsigned int n, struct fl_gs flags)
@@ -75,6 +94,7 @@ int		ft_print_uns(unsigned int n, struct fl_gs flags)
 		ft_print_uns(n / 10, flags);
 	c = n % 10 + '0';
 	write(1, &c, 1);
+	return (0);
 }
 
 int		ft_print_hex(unsigned int n, struct fl_gs flags)
@@ -87,6 +107,7 @@ int		ft_print_hex(unsigned int n, struct fl_gs flags)
 		ft_print_hex(n / 16, flags);
 	i = n % 16;
 	write(1, &set[i], 1);
+	return (0);
 }
 
 int		ft_print_hexcap(unsigned int n, struct fl_gs flags)
@@ -99,4 +120,5 @@ int		ft_print_hexcap(unsigned int n, struct fl_gs flags)
 		ft_print_hexcap(n / 16, flags);
 	i = n % 16;
 	write(1, &set[i], 1);
+	return (0);
 }
