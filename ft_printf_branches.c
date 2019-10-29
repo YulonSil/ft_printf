@@ -6,18 +6,25 @@
 /*   By: cclaude <cclaude@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 20:33:10 by cclaude           #+#    #+#             */
-/*   Updated: 2019/10/17 17:53:21 by cclaude          ###   ########.fr       */
+/*   Updated: 2019/10/29 11:50:09 by cclaude          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_print_char(char c, struct fl_gs flags)
+int		ft_print_char(char c, struct fl_gs flags)
 {
-	write(1, &c, 1);
+	if (flags.width > 0 && flags.minus == 1)
+		return(ft_putchar_minwid(c, flags.width));
+	else if (flags.width > 0 && flags.zero == 1)
+		return(ft_putchar_zerowid(c, flags.width));
+	else if (flags.width > 0)
+		return(ft_putchar_wid(c, flags.width));
+	else
+		return(ft_putchar(c));
 }
 
-void	ft_print_str(char *s, struct fl_gs flags)
+int		ft_print_str(char *s, struct fl_gs flags)
 {
 	int	i;
 
@@ -26,7 +33,7 @@ void	ft_print_str(char *s, struct fl_gs flags)
 		write(1, &s[i++], 1);
 }
 
-void	ft_print_mem(unsigned long n, int start, struct fl_gs flags)
+int		ft_print_mem(unsigned long n, int start, struct fl_gs flags)
 {
 	char	*set;
 	int		i;
@@ -40,7 +47,7 @@ void	ft_print_mem(unsigned long n, int start, struct fl_gs flags)
 	write(1, &set[i], 1);
 }
 
-void	ft_print_nbr(int n, struct fl_gs flags)
+int		ft_print_nbr(int n, struct fl_gs flags)
 {
 	char	c;
 
@@ -60,7 +67,7 @@ void	ft_print_nbr(int n, struct fl_gs flags)
 	write(1, &c, 1);
 }
 
-void	ft_print_uns(unsigned int n, struct fl_gs flags)
+int		ft_print_uns(unsigned int n, struct fl_gs flags)
 {
 	char	c;
 
@@ -70,7 +77,7 @@ void	ft_print_uns(unsigned int n, struct fl_gs flags)
 	write(1, &c, 1);
 }
 
-void	ft_print_hex(unsigned int n, struct fl_gs flags)
+int		ft_print_hex(unsigned int n, struct fl_gs flags)
 {
 	char	*set;
 	int		i;
@@ -82,7 +89,7 @@ void	ft_print_hex(unsigned int n, struct fl_gs flags)
 	write(1, &set[i], 1);
 }
 
-void	ft_print_hexcap(unsigned int n, struct fl_gs flags)
+int		ft_print_hexcap(unsigned int n, struct fl_gs flags)
 {
 	char	*set;
 	int		i;

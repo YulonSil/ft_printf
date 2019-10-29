@@ -6,7 +6,7 @@
 /*   By: cclaude <cclaude@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 17:18:32 by cclaude           #+#    #+#             */
-/*   Updated: 2019/10/17 17:53:39 by cclaude          ###   ########.fr       */
+/*   Updated: 2019/10/29 11:56:19 by cclaude          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,32 +27,40 @@ int		is_valid_flag(const char c)
 		return (1);
 	if (c == 'u' || c == 'x' || c == 'X' || c == '%' || c == ' ')
 		return (1);
-	if (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i')
+	if (c == '-' || c == '.' || c == '*')
 		return (1);
 	if (c >= '0' && c <= '9')
 		return (1);
 	return (0);
 }
 
-int		ft_atoi(const char *str, int *i)
+int		ft_atoi_star(const char *s, int *i, va_list args)
 {
 	int	num;
 
 	num = 0;
-	while (str[*i] >= '0' && str[*i] <= '9')
+	if (s[*i] == '.')
+		(*i)++;
+	if (s[*i] == '*')
 	{
-		num = num * 10 + (str[*i] - 48);
+		num = va_arg(args, unsigned int);
+		return (num);
+	}
+	while (s[*i] >= '0' && s[*i] <= '9')
+	{
+		num = num * 10 + (s[*i] - 48);
 		(*i)++;
 	}
+	(*i)--;
 	return (num);
 }
 
-void	flagger(const char *s, int *i, struct fl_gs *flags)
+void	flagger(const char *s, int *i, struct fl_gs *flags, va_list args)
 {
 	flags->minus = 0;
 	flags->zero = 0;
 	flags->dot = 0;
-	flags->star = 0;
+	flags->precision = 0;
 	flags->width = 0;
 	while (is_end_flag(s[*i]) == 0 && is_valid_flag(s[*i]))
 	{
@@ -61,36 +69,46 @@ void	flagger(const char *s, int *i, struct fl_gs *flags)
 		else if (s[*i] == '0')
 			flags->zero = 1;
 		else if (s[*i] == '.')
+		{
 			flags->dot = 1;
-		else if (s[*i] == '*')
-			flags->star = 1;
-		else if (s[*i] >= '0' && s[*i] >= '9')
-			flags->width = ft_atoi(s, i);
+			flags->precision = ft_atoi_star(s, i, args);
+		}
+		else if (s[*i] == '*' || (s[*i] >= '1' && s[*i] <= '9'))
+			flags->width = ft_atoi_star(s, i, args);
 		(*i)++;
 	}
+	// printf("Flag list\n");
+	// printf("Minus : %d\n", flags->minus);
+	// printf("Zero : %d\n", flags->zero);
+	// printf("Dot : %d\n", flags->dot);
+	// printf("Precision : %d\n", flags->precision);
+	// printf("Width : %d\n", flags->width);
 }
 
-void	func_branch(const char *s, int *i, va_list args)
+int		func_branch(const char *s, int *i, va_list args)
 {
 	struct fl_gs	flags;
+	int				printed;
 
 	(*i)++;
-	flagger(s, i, &flags);
+	printed = 0;
+	flagger(s, i, &flags, args);
 	if (s[*i] == 'c')
-		ft_print_char(va_arg(args, int), flags);
+		printed = ft_print_char(va_arg(args, int), flags);
 	else if (s[*i] == 's')
-		ft_print_str(va_arg(args, char *), flags);
+		printed = ft_print_str(va_arg(args, char *), flags);
 	else if (s[*i] == 'p')
-		ft_print_mem(va_arg(args, unsigned long), 1, flags);
+		printed = ft_print_mem(va_arg(args, unsigned long), 1, flags);
 	else if (s[*i] == 'd' || s[*i] == 'i')
-		ft_print_nbr(va_arg(args, int), flags);
+		printed = ft_print_nbr(va_arg(args, int), flags);
 	else if (s[*i] == 'u')
-		ft_print_uns(va_arg(args, unsigned int), flags);
+		printed = ft_print_uns(va_arg(args, unsigned int), flags);
 	else if (s[*i] == 'x')
-		ft_print_hex(va_arg(args, unsigned int), flags);
+		printed = ft_print_hex(va_arg(args, unsigned int), flags);
 	else if (s[*i] == 'X')
-		ft_print_hexcap(va_arg(args, unsigned int), flags);
+		printed = ft_print_hexcap(va_arg(args, unsigned int), flags);
 	(*i)++;
+	return (printed);
 }
 
 int		ft_printf(const char *string, ...)
@@ -105,7 +123,7 @@ int		ft_printf(const char *string, ...)
 	while (string[i] != '\0')
 	{
 		if (string[i] == '%')
-			func_branch(string, &i, args);
+			printed += func_branch(string, &i, args);
 		else
 		{
 			write(1, &string[i++], 1);
