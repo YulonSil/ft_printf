@@ -6,7 +6,7 @@
 /*   By: cclaude <cclaude@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 17:55:18 by cclaude           #+#    #+#             */
-/*   Updated: 2019/10/30 12:29:50 by cclaude          ###   ########.fr       */
+/*   Updated: 2019/10/30 13:33:19 by cclaude          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,22 @@ int	ft_strlen(char *s)
 
 int	ft_putstr_prewid(char *s, struct fl_gs flags)
 {
-	int	ssize;
-	int	padsize;
-	int	i;
+	int		ssize;
+	int		padsize;
+	int		i;
+	char	c;
 
+	c = ' ';
+	if (flags.zero == 1 && flags.minus == 0)
+		c = '0';
 	ssize = (ft_strlen(s) < flags.precision) ? ft_strlen(s) : flags.precision;
 	padsize = (flags.width > ssize) ? flags.width - ssize : 0;
 	i = 0;
 	while (flags.minus == 1 && i < flags.precision && s[i] != '\0')
 		write(1, &s[i++], 1);
 	i = 0;
-	while (flags.zero == 0 && i++ < padsize)
-		write(1, " ", 1);
-	i = 0;
-	while (flags.zero == 1 && i++ < padsize)
-		write(1, "0", 1);
+	while (i++ < padsize)
+		write(1, &c, 1);
 	i = 0;
 	while (flags.minus == 0 && i < flags.precision && s[i] != '\0')
 		write(1, &s[i++], 1);
@@ -47,19 +48,20 @@ int	ft_putstr_prewid(char *s, struct fl_gs flags)
 
 int	ft_putstr_wid(char *s, struct fl_gs flags)
 {
-	int	padsize;
-	int	i;
+	int		padsize;
+	int		i;
+	char	c;
 
+	c = ' ';
+	if (flags.zero == 1 && flags.minus == 0)
+		c = '0';
 	padsize = (flags.width > ft_strlen(s)) ? flags.width - ft_strlen(s) : 0;
 	i = 0;
 	while (flags.minus == 1 && s[i] != '\0')
 		write(1, &s[i++], 1);
 	i = 0;
-	while (flags.zero == 0 && i++ < padsize)
-		write(1, " ", 1);
-	i = 0;
-	while (flags.zero == 1 && i++ < padsize)
-		write(1, "0", 1);
+	while (i++ < padsize)
+		write(1, &c, 1);
 	i = 0;
 	while (flags.minus == 0 && s[i] != '\0')
 		write(1, &s[i++], 1);

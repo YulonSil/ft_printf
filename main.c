@@ -2,24 +2,25 @@
 
 int	main(void)
 {
-	int	lol;
+	int	ret;
+	long	*p;
 
 	printf("\n");
 	printf("Real printf\n");
 	printf("\033[33m[");
 
-	lol = printf("%13s", NULL);
+	ret = printf("%-20p", p);
 
 	printf("]\n\033[0m");
-	printf("Returned : %d\n\n", lol);
+	printf("Returned : %d\n\n", ret);
 	printf("Your printf\n");
 	printf("\033[33m[");
 	fflush(stdout);
 
-	lol = ft_printf("%13s", NULL);
+	ret = ft_printf("%-20p", p);
 
 	printf("]\n\033[0m");
-	printf("Returned : %d\n\n", lol);
+	printf("Returned : %d\n\n", ret);
 	// printf("%12.c\n", 'a');
 	// printf("%12.0c\n", 'a');
 	// printf("%12.1c\n", 'a');
