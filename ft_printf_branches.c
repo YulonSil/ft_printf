@@ -6,7 +6,7 @@
 /*   By: cclaude <cclaude@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 20:33:10 by cclaude           #+#    #+#             */
-/*   Updated: 2019/10/30 15:47:31 by cclaude          ###   ########.fr       */
+/*   Updated: 2019/10/30 16:48:58 by cclaude          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ int		ft_print_str(char *s, struct fl_gs flags)
 
 int		ft_print_mem(unsigned long n, int start, struct fl_gs flags)
 {
-	// if (flags.width > 0 && flags.dot == 1)
-	// 	return (ft_putmem_prewid(n, 1, flags));
+	if (flags.width > 0 && flags.dot == 1)
+		return (ft_putmem_prewid(n, flags));
 	if (flags.width > 0 && flags.zero == 0)
-		return (ft_putmem_wid(n, 1, flags));
+		return (ft_putmem_wid(n, flags));
 	else if (flags.dot == 1 || (flags.width > 0 && flags.zero == 1))
-		return (ft_putmem_pre(n, 1, flags));
+		return (ft_putmem_pre(n, flags));
 	else
 		return (ft_putmem(n, 1));
 }

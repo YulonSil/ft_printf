@@ -9,7 +9,7 @@ int	main(void)
 	printf("Real printf\n");
 	printf("\033[33m[");
 
-	ret = printf("%-20p", p);
+	ret = printf("%10.5p", NULL);
 
 	printf("]\n\033[0m");
 	printf("Returned : %d\n\n", ret);
@@ -17,7 +17,7 @@ int	main(void)
 	printf("\033[33m[");
 	fflush(stdout);
 
-	ret = ft_printf("%-20p", p);
+	ret = ft_printf("%10.5p", NULL);
 
 	printf("]\n\033[0m");
 	printf("Returned : %d\n\n", ret);

@@ -6,7 +6,7 @@
 /*   By: cclaude <cclaude@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 22:07:57 by cclaude           #+#    #+#             */
-/*   Updated: 2019/10/30 12:31:40 by cclaude          ###   ########.fr       */
+/*   Updated: 2019/10/30 16:47:17 by cclaude          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,12 @@ int		ft_putstr_prewid(char *s, struct fl_gs flags);
 int		ft_putstr_wid(char *s, struct fl_gs flags);
 int		ft_putstr_pre(char *s, int prec);
 int		ft_putstr(char *s);
+
+int		ft_plen(unsigned long n);
+int		ft_putmem_prewid(unsigned long n, struct fl_gs flags);
+int		ft_putmem_wid(unsigned long n, struct fl_gs flags);
+int		ft_putmem_pre(unsigned long n, struct fl_gs flags);
+int		ft_putmem(unsigned long n, int start);
 
 int		ft_print_char(char c, struct fl_gs flags);
 int		ft_print_str(char *s, struct fl_gs flags);
