@@ -6,7 +6,7 @@
 /*   By: cclaude <cclaude@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 20:33:10 by cclaude           #+#    #+#             */
-/*   Updated: 2019/10/29 19:13:19 by cclaude          ###   ########.fr       */
+/*   Updated: 2019/10/30 12:29:37 by cclaude          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ int		ft_print_str(char *s, struct fl_gs flags)
 			return (ft_putstr_prewid("(null)", flags));
 		else if (flags.width > 0)
 			return (ft_putstr_wid("(null)", flags));
-		// else if (flags.dot == 1)
-		// 	return (ft_putstr_pre("(null)", flags.precision));
-		// else
-		// 	return (ft_putstr("(null)"));
+		else if (flags.dot == 1)
+			return (ft_putstr_pre("(null)", flags.precision));
+		else
+			return (ft_putstr("(null)"));
 	}
 	else
 	{
@@ -43,10 +43,10 @@ int		ft_print_str(char *s, struct fl_gs flags)
 			return (ft_putstr_prewid(s, flags));
 		else if (flags.width > 0)
 			return (ft_putstr_wid(s, flags));
-		// else if (flags.dot == 1)
-		// 	return (ft_putstr_pre(s, flags.precision));
-		// else
-		// 	return (ft_putstr(s));
+		else if (flags.dot == 1)
+			return (ft_putstr_pre(s, flags.precision));
+		else
+			return (ft_putstr(s));
 	}
 }
 

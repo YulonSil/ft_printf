@@ -6,7 +6,7 @@
 /*   By: cclaude <cclaude@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 17:55:18 by cclaude           #+#    #+#             */
-/*   Updated: 2019/10/29 19:12:20 by cclaude          ###   ########.fr       */
+/*   Updated: 2019/10/30 12:29:50 by cclaude          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,26 @@ int	ft_putstr_wid(char *s, struct fl_gs flags)
 	while (flags.minus == 0 && s[i] != '\0')
 		write(1, &s[i++], 1);
 	return (ft_strlen(s) > flags.width ? ft_strlen(s) : flags.width);
+}
+
+int	ft_putstr_pre(char *s, int prec)
+{
+	int	ssize;
+	int	i;
+
+	ssize = (ft_strlen(s) < prec) ? ft_strlen(s) : prec;
+	i = 0;
+	while (i < ssize && s[i] != '\0')
+		write(1, &s[i++], 1);
+	return (ssize);
+}
+
+int	ft_putstr(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] != '\0')
+		write(1, &s[i++], 1);
+	return (i);
 }

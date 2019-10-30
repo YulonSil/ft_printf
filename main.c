@@ -8,7 +8,7 @@ int	main(void)
 	printf("Real printf\n");
 	printf("\033[33m[");
 
-	lol = printf("%-0s", "hello");
+	lol = printf("%13s", NULL);
 
 	printf("]\n\033[0m");
 	printf("Returned : %d\n\n", lol);
@@ -16,7 +16,7 @@ int	main(void)
 	printf("\033[33m[");
 	fflush(stdout);
 
-	lol = ft_printf("%-0s", "hello");
+	lol = ft_printf("%13s", NULL);
 
 	printf("]\n\033[0m");
 	printf("Returned : %d\n\n", lol);
