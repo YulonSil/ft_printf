@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_memory.c                                 :+:      :+:    :+:   */
+/*   ft_printf_put_p.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cclaude <cclaude@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/30 14:11:08 by cclaude           #+#    #+#             */
-/*   Updated: 2019/10/30 17:01:17 by cclaude          ###   ########.fr       */
+/*   Created: 2019/10/31 12:50:49 by cclaude           #+#    #+#             */
+/*   Updated: 2019/10/31 12:50:51 by cclaude          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		ft_plen(unsigned long n)
 	return (len);
 }
 
-int		ft_putmem_prewid(unsigned long n, struct fl_gs flags)
+int		ft_putmem_prewid(unsigned long n, struct s_flgs flags)
 {
 	char	*set;
 	int		i;
@@ -32,7 +32,9 @@ int		ft_putmem_prewid(unsigned long n, struct fl_gs flags)
 	int		count;
 
 	count = flags.precision - ft_plen(n);
+	count = (count > 0) ? count : 0;
 	padding = flags.width - count - ft_plen(n) - 2;
+	padding = (padding > 0) ? padding : 0;
 	printed = 2 + padding + count;
 	while (flags.minus == 0 && padding-- > 0)
 		write(1, " ", 1);
@@ -45,7 +47,7 @@ int		ft_putmem_prewid(unsigned long n, struct fl_gs flags)
 	return (printed);
 }
 
-int		ft_putmem_wid(unsigned long n, struct fl_gs flags)
+int		ft_putmem_wid(unsigned long n, struct s_flgs flags)
 {
 	char	*set;
 	int		i;
@@ -70,7 +72,7 @@ int		ft_putmem_wid(unsigned long n, struct fl_gs flags)
 	return (printed);
 }
 
-int		ft_putmem_pre(unsigned long n, struct fl_gs flags)
+int		ft_putmem_pre(unsigned long n, struct s_flgs flags)
 {
 	char	*set;
 	int		i;
@@ -104,7 +106,7 @@ int		ft_putmem(unsigned long n, int start)
 	printed = 0;
 	if (start)
 	{
-		write (1, "0x", 2);
+		write(1, "0x", 2);
 		printed += 2;
 	}
 	set = "0123456789abcdef";

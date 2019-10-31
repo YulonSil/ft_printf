@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_string.c                                 :+:      :+:    :+:   */
+/*   ft_printf_put_s.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cclaude <cclaude@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/29 17:55:18 by cclaude           #+#    #+#             */
-/*   Updated: 2019/10/30 13:33:19 by cclaude          ###   ########.fr       */
+/*   Created: 2019/10/31 12:50:41 by cclaude           #+#    #+#             */
+/*   Updated: 2019/10/31 12:50:43 by cclaude          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_strlen(char *s)
 	return (i);
 }
 
-int	ft_putstr_prewid(char *s, struct fl_gs flags)
+int	ft_putstr_prewid(char *s, struct s_flgs flags)
 {
 	int		ssize;
 	int		padsize;
@@ -46,7 +46,7 @@ int	ft_putstr_prewid(char *s, struct fl_gs flags)
 	return (ssize > flags.width ? ssize : flags.width);
 }
 
-int	ft_putstr_wid(char *s, struct fl_gs flags)
+int	ft_putstr_wid(char *s, struct s_flgs flags)
 {
 	int		padsize;
 	int		i;

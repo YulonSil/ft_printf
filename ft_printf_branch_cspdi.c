@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_branches.c                               :+:      :+:    :+:   */
+/*   ft_printf_branch_cspdi.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cclaude <cclaude@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/16 20:33:10 by cclaude           #+#    #+#             */
-/*   Updated: 2019/10/30 16:48:58 by cclaude          ###   ########.fr       */
+/*   Created: 2019/10/31 12:51:15 by cclaude           #+#    #+#             */
+/*   Updated: 2019/10/31 17:26:41 by cclaude          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_print_char(char c, struct fl_gs flags)
+int		ft_print_char(char c, struct s_flgs flags)
 {
 	if (flags.width > 0 && flags.minus == 1)
 		return (ft_putchar_minwid(c, flags.width));
@@ -24,7 +24,7 @@ int		ft_print_char(char c, struct fl_gs flags)
 		return (ft_putchar(c));
 }
 
-int		ft_print_str(char *s, struct fl_gs flags)
+int		ft_print_str(char *s, struct s_flgs flags)
 {
 	if (s == NULL)
 	{
@@ -50,7 +50,7 @@ int		ft_print_str(char *s, struct fl_gs flags)
 	}
 }
 
-int		ft_print_mem(unsigned long n, int start, struct fl_gs flags)
+int		ft_print_mem(unsigned long n, int start, struct s_flgs flags)
 {
 	if (flags.width > 0 && flags.dot == 1)
 		return (ft_putmem_prewid(n, flags));
@@ -62,60 +62,15 @@ int		ft_print_mem(unsigned long n, int start, struct fl_gs flags)
 		return (ft_putmem(n, 1));
 }
 
-int		ft_print_nbr(int n, struct fl_gs flags)
+int		ft_print_nbr(long n, struct s_flgs flags)
 {
-	char	c;
-
-	if (n < 0)
-	{
-		write(1, "-", 1);
-		if (n == -2147483648)
-		{
-			write(1, "2", 1);
-			n = -147483648;
-		}
-		n = -n;
-	}
-	if (n / 10 > 0)
-		ft_print_nbr(n / 10, flags);
-	c = n % 10 + '0';
-	write(1, &c, 1);
-	return (0);
-}
-
-int		ft_print_uns(unsigned int n, struct fl_gs flags)
-{
-	char	c;
-
-	if (n / 10 > 0)
-		ft_print_uns(n / 10, flags);
-	c = n % 10 + '0';
-	write(1, &c, 1);
-	return (0);
-}
-
-int		ft_print_hex(unsigned int n, struct fl_gs flags)
-{
-	char	*set;
-	int		i;
-
-	set = "0123456789abcdef";
-	if (n / 16 > 0)
-		ft_print_hex(n / 16, flags);
-	i = n % 16;
-	write(1, &set[i], 1);
-	return (0);
-}
-
-int		ft_print_hexcap(unsigned int n, struct fl_gs flags)
-{
-	char	*set;
-	int		i;
-
-	set = "0123456789ABCDEF";
-	if (n / 16 > 0)
-		ft_print_hexcap(n / 16, flags);
-	i = n % 16;
-	write(1, &set[i], 1);
-	return (0);
+	// if (flags.dot == 1 && flags.precision == 0 && )
+	if (flags.width > 0 && flags.dot == 1)
+		return (ft_putnbr_prewid(n, flags));
+	else if (flags.width > 0 && flags.zero == 0)
+		return (ft_putnbr_wid(n, flags));
+	else if (flags.dot == 1 || (flags.width > 0 && flags.zero == 1))
+		return (ft_putnbr_pre(n, flags));
+	else
+		return (ft_putnbr(n));
 }
