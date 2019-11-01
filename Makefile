@@ -9,12 +9,13 @@ HEADER = ft_printf.h
 SRC = ft_printf.c \
 	ft_printf_flagger.c \
 	ft_printf_branch_csp.c \
-	ft_printf_branch_dux.c \
+	ft_printf_branch_duxo.c \
 	ft_printf_put_c.c \
 	ft_printf_put_s.c \
 	ft_printf_put_p.c \
 	ft_printf_put_du.c \
 	ft_printf_put_x.c \
+	ft_printf_put_o.c \
 
 OBJ = $(SRC:.c=.o)
 

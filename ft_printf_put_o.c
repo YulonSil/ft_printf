@@ -1,50 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_put_du.c                                 :+:      :+:    :+:   */
+/*   ft_printf_put_o.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cclaude <cclaude@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/01 15:41:14 by cclaude           #+#    #+#             */
-/*   Updated: 2019/11/01 18:37:07 by cclaude          ###   ########.fr       */
+/*   Created: 2019/11/01 19:56:57 by cclaude           #+#    #+#             */
+/*   Updated: 2019/11/01 20:05:28 by cclaude          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_nbrlen(long n)
+int		ft_octlen(unsigned int n)
 {
 	int	len;
 
 	len = 0;
 	if (n == 0)
 		return (1);
-	else if (n < 0)
-	{
-		n = -n;
-		len++;
-	}
 	while (n > 0)
 	{
-		n = n / 10;
+		n = n / 8;
 		len++;
 	}
 	return (len);
 }
 
-int		ft_putnbr_prewid(long n, struct s_flgs flags)
+int		ft_putoct_prewid(unsigned int n, struct s_flgs flags)
 {
 	int		printed;
 	int		count;
 	int		padding;
 
 	printed = 0;
-	count = flags.precision - ft_nbrlen(n);
+	count = flags.precision - ft_octlen(n);
 	count += (n < 0) ? 1 : 0;
 	count = (count > 0) ? count : 0;
-	padding = flags.width - ft_nbrlen(n) - count;
+	padding = flags.width - ft_octlen(n) - count;
 	padding = (padding > 0) ? padding : 0;
-	printed += padding + count + ft_nbrlen(n);
+	printed += padding + count + ft_octlen(n);
 	while (flags.minus == 0 && padding-- > 0)
 		write(1, " ", 1);
 	if (n < 0)
@@ -54,41 +49,20 @@ int		ft_putnbr_prewid(long n, struct s_flgs flags)
 	}
 	while (count-- > 0)
 		write(1, "0", 1);
-	ft_putnbr(n);
+	ft_putoct(n);
 	while (flags.minus == 1 && padding-- > 0)
 		write(1, " ", 1);
 	return (printed);
 }
 
-int		ft_putnbr_wid(long n, struct s_flgs flags)
-{
-	int		printed;
-	int		padding;
-
-	printed = 0;
-	padding = flags.width - ft_nbrlen(n);
-	while (flags.minus == 0 && padding-- > 0)
-	{
-		write(1, " ", 1);
-		printed++;
-	}
-	printed += ft_putnbr(n);
-	while (flags.minus == 1 && padding-- > 0)
-	{
-		write(1, " ", 1);
-		printed++;
-	}
-	return (printed);
-}
-
-int		ft_putnbr_pre(long n, struct s_flgs flags)
+int		ft_putoct_pre(unsigned int n, struct s_flgs flags)
 {
 	int		printed;
 	int		count;
 
 	printed = 0;
 	count = (flags.dot == 1) ? flags.precision : flags.width;
-	count -= (n < 0 && flags.dot == 1) ? ft_nbrlen(n) - 1 : ft_nbrlen(n);
+	count -= (n > 0) ? ft_octlen(n) : ft_octlen(n) - 1;
 	if (n < 0)
 	{
 		write(1, "-", 1);
@@ -100,26 +74,43 @@ int		ft_putnbr_pre(long n, struct s_flgs flags)
 		write(1, "0", 1);
 		printed++;
 	}
-	printed += ft_putnbr(n);
+	printed += ft_putoct(n);
 	return (printed);
 }
 
-int		ft_putnbr(long n)
+int		ft_putoct_wid(unsigned int n, struct s_flgs flags)
 {
-	char	c;
 	int		printed;
+	int		padding;
 
 	printed = 0;
-	if (n < 0)
+	padding = flags.width - ft_octlen(n);
+	while (flags.minus == 0 && padding-- > 0)
 	{
-		write(1, "-", 1);
+		write(1, " ", 1);
 		printed++;
-		n = -n;
 	}
-	if (n / 10 > 0)
-		printed += ft_putnbr(n / 10);
-	c = n % 10 + '0';
-	write(1, &c, 1);
+	printed += ft_putoct(n);
+	while (flags.minus == 1 && padding-- > 0)
+	{
+		write(1, " ", 1);
+		printed++;
+	}
+	return (printed);
+}
+
+int		ft_putoct(unsigned int n)
+{
+	char	*set;
+	int		printed;
+	int		i;
+
+	set = "01234567";
+	printed = 0;
+	if (n / 8 > 0)
+		printed += ft_putoct(n / 8);
+	i = n % 8;
+	write(1, &set[i], 1);
 	printed++;
 	return (printed);
 }

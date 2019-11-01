@@ -6,7 +6,7 @@
 /*   By: cclaude <cclaude@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 17:18:32 by cclaude           #+#    #+#             */
-/*   Updated: 2019/11/01 17:26:29 by cclaude          ###   ########.fr       */
+/*   Updated: 2019/11/01 20:01:26 by cclaude          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int		func_branch(const char *s, int *i, va_list args)
 	int				printed;
 
 	(*i)++;
-	printed = 0;
 	flagger(s, i, &flags, args);
 	if (s[*i] == 'c')
 		printed = ft_print_char(va_arg(args, int), flags);
@@ -30,13 +29,13 @@ int		func_branch(const char *s, int *i, va_list args)
 		printed = ft_print_nbr(va_arg(args, int), flags);
 	else if (s[*i] == 'u')
 		printed = ft_print_nbr(va_arg(args, unsigned int), flags);
-	else if (s[*i] == 'x')
-		printed = ft_print_hex(va_arg(args, unsigned int), flags, 0);
-	else if (s[*i] == 'X')
-		printed = ft_print_hex(va_arg(args, unsigned int), flags, 1);
-	else if (s[*i] == '%')
-		printed = ft_print_percent();
-	if (is_end_flag(s[*i]))
+	else if (s[*i] == 'x' || s[*i] == 'X')
+		printed = ft_print_hex(va_arg(args, unsigned int), flags, s[*i]);
+	else if (s[*i] == 'o')
+		printed = ft_print_oct(va_arg(args, unsigned int), flags);
+	else
+		printed = ft_print_other(s[*i], flags);
+	if (s[*i] != '\0')
 		(*i)++;
 	return (printed);
 }
