@@ -6,7 +6,7 @@
 /*   By: cclaude <cclaude@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 22:07:57 by cclaude           #+#    #+#             */
-/*   Updated: 2019/10/31 17:26:54 by cclaude          ###   ########.fr       */
+/*   Updated: 2019/11/01 17:08:33 by cclaude          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int		ft_putstr_wid(char *s, struct s_flgs flags);
 int		ft_putstr_pre(char *s, int prec);
 int		ft_putstr(char *s);
 
-int		ft_plen(unsigned long n);
+int		ft_memlen(unsigned long n);
 int		ft_putmem_prewid(unsigned long n, struct s_flgs flags);
 int		ft_putmem_wid(unsigned long n, struct s_flgs flags);
 int		ft_putmem_pre(unsigned long n, struct s_flgs flags);
@@ -48,14 +48,18 @@ int		ft_putnbr_pre(long n, struct s_flgs flags);
 int		ft_putnbr_wid(long n, struct s_flgs flags);
 int		ft_putnbr(long n);
 
+int		ft_hexlen(unsigned int n);
+int		ft_puthex_prewid(unsigned int n, struct s_flgs flags, int cap);
+int		ft_puthex_pre(unsigned int n, struct s_flgs flags, int cap);
+int		ft_puthex_wid(unsigned int n, struct s_flgs flags, int cap);
+int		ft_puthex(unsigned int n, int cap);
+
 int		ft_print_char(char c, struct s_flgs flags);
 int		ft_print_str(char *s, struct s_flgs flags);
 int		ft_print_mem(unsigned long n, int start, struct s_flgs flags);
-int		ft_print_nbr(long n, struct s_flgs flags);
 
-int		ft_print_uns(unsigned int n, struct s_flgs flags);
-int		ft_print_hex(unsigned int n, struct s_flgs flags);
-int		ft_print_hexcap(unsigned int n, struct s_flgs flags);
+int		ft_print_nbr(long n, struct s_flgs flags);
+int		ft_print_hex(unsigned int n, struct s_flgs flags, int cap);
 int		ft_print_percent(void);
 
 int		is_end_flag(const char c);

@@ -6,7 +6,7 @@
 /*   By: cclaude <cclaude@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 17:18:32 by cclaude           #+#    #+#             */
-/*   Updated: 2019/10/31 17:22:05 by cclaude          ###   ########.fr       */
+/*   Updated: 2019/11/01 17:05:17 by cclaude          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,13 @@ int		func_branch(const char *s, int *i, va_list args)
 	else if (s[*i] == 'u')
 		printed = ft_print_nbr(va_arg(args, unsigned int), flags);
 	else if (s[*i] == 'x')
-		printed = ft_print_hex(va_arg(args, unsigned int), flags);
+		printed = ft_print_hex(va_arg(args, unsigned int), flags, 0);
 	else if (s[*i] == 'X')
-		printed = ft_print_hexcap(va_arg(args, unsigned int), flags);
+		printed = ft_print_hex(va_arg(args, unsigned int), flags, 1);
 	else if (s[*i] == '%')
 		printed = ft_print_percent();
-	(*i)++;
+	if (is_end_flag(s[*i]))
+		(*i)++;
 	return (printed);
 }
 

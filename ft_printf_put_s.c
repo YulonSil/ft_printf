@@ -6,13 +6,13 @@
 /*   By: cclaude <cclaude@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 12:50:41 by cclaude           #+#    #+#             */
-/*   Updated: 2019/10/31 12:50:43 by cclaude          ###   ########.fr       */
+/*   Updated: 2019/11/01 16:49:28 by cclaude          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_strlen(char *s)
+int		ft_strlen(char *s)
 {
 	int	i;
 
@@ -22,7 +22,7 @@ int	ft_strlen(char *s)
 	return (i);
 }
 
-int	ft_putstr_prewid(char *s, struct s_flgs flags)
+int		ft_putstr_prewid(char *s, struct s_flgs flags)
 {
 	int		ssize;
 	int		padsize;
@@ -46,7 +46,7 @@ int	ft_putstr_prewid(char *s, struct s_flgs flags)
 	return (ssize > flags.width ? ssize : flags.width);
 }
 
-int	ft_putstr_wid(char *s, struct s_flgs flags)
+int		ft_putstr_wid(char *s, struct s_flgs flags)
 {
 	int		padsize;
 	int		i;
@@ -68,7 +68,7 @@ int	ft_putstr_wid(char *s, struct s_flgs flags)
 	return (ft_strlen(s) > flags.width ? ft_strlen(s) : flags.width);
 }
 
-int	ft_putstr_pre(char *s, int prec)
+int		ft_putstr_pre(char *s, int prec)
 {
 	int	ssize;
 	int	i;
@@ -80,7 +80,7 @@ int	ft_putstr_pre(char *s, int prec)
 	return (ssize);
 }
 
-int	ft_putstr(char *s)
+int		ft_putstr(char *s)
 {
 	int	i;
 

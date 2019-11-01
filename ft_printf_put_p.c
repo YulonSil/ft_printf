@@ -6,19 +6,19 @@
 /*   By: cclaude <cclaude@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 12:50:49 by cclaude           #+#    #+#             */
-/*   Updated: 2019/10/31 12:50:51 by cclaude          ###   ########.fr       */
+/*   Updated: 2019/11/01 16:36:21 by cclaude          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_plen(unsigned long n)
+int		ft_memlen(unsigned long n)
 {
 	int	len;
 
 	len = 0;
 	if (n / 16 > 0)
-		len += ft_plen(n / 16);
+		len += ft_memlen(n / 16);
 	len++;
 	return (len);
 }
@@ -31,9 +31,9 @@ int		ft_putmem_prewid(unsigned long n, struct s_flgs flags)
 	int		padding;
 	int		count;
 
-	count = flags.precision - ft_plen(n);
+	count = flags.precision - ft_memlen(n);
 	count = (count > 0) ? count : 0;
-	padding = flags.width - count - ft_plen(n) - 2;
+	padding = flags.width - count - ft_memlen(n) - 2;
 	padding = (padding > 0) ? padding : 0;
 	printed = 2 + padding + count;
 	while (flags.minus == 0 && padding-- > 0)
@@ -56,7 +56,7 @@ int		ft_putmem_wid(unsigned long n, struct s_flgs flags)
 
 	printed = 0;
 	padding = (flags.dot == 1) ? flags.precision : flags.width - 2;
-	padding -= ft_plen(n);
+	padding -= ft_memlen(n);
 	while (flags.minus == 0 && padding-- > 0)
 	{
 		write(1, " ", 1);
@@ -82,7 +82,7 @@ int		ft_putmem_pre(unsigned long n, struct s_flgs flags)
 	write(1, "0x", 2);
 	printed = 2;
 	count = (flags.dot == 1) ? flags.precision : flags.width - 2;
-	count -= ft_plen(n);
+	count -= ft_memlen(n);
 	while (count-- > 0)
 	{
 		write(1, "0", 1);

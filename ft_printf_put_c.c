@@ -6,13 +6,13 @@
 /*   By: cclaude <cclaude@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 12:51:01 by cclaude           #+#    #+#             */
-/*   Updated: 2019/10/31 12:51:02 by cclaude          ###   ########.fr       */
+/*   Updated: 2019/11/01 16:49:41 by cclaude          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putchar_minwid(char c, int width)
+int		ft_putchar_minwid(char c, int width)
 {
 	int	count;
 
@@ -23,7 +23,7 @@ int	ft_putchar_minwid(char c, int width)
 	return (width);
 }
 
-int	ft_putchar_zerowid(char c, int width)
+int		ft_putchar_zerowid(char c, int width)
 {
 	int	count;
 
@@ -34,7 +34,7 @@ int	ft_putchar_zerowid(char c, int width)
 	return (width);
 }
 
-int	ft_putchar_wid(char c, int width)
+int		ft_putchar_wid(char c, int width)
 {
 	int	count;
 
@@ -45,7 +45,7 @@ int	ft_putchar_wid(char c, int width)
 	return (width);
 }
 
-int	ft_putchar(char c)
+int		ft_putchar(char c)
 {
 	write(1, &c, 1);
 	return (1);

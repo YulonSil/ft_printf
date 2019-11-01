@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_branch_cspdi.c                           :+:      :+:    :+:   */
+/*   ft_printf_branch_csp.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cclaude <cclaude@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/31 12:51:15 by cclaude           #+#    #+#             */
-/*   Updated: 2019/10/31 17:26:41 by cclaude          ###   ########.fr       */
+/*   Created: 2019/11/01 16:20:23 by cclaude           #+#    #+#             */
+/*   Updated: 2019/11/01 16:26:18 by cclaude          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,17 +60,4 @@ int		ft_print_mem(unsigned long n, int start, struct s_flgs flags)
 		return (ft_putmem_pre(n, flags));
 	else
 		return (ft_putmem(n, 1));
-}
-
-int		ft_print_nbr(long n, struct s_flgs flags)
-{
-	// if (flags.dot == 1 && flags.precision == 0 && )
-	if (flags.width > 0 && flags.dot == 1)
-		return (ft_putnbr_prewid(n, flags));
-	else if (flags.width > 0 && flags.zero == 0)
-		return (ft_putnbr_wid(n, flags));
-	else if (flags.dot == 1 || (flags.width > 0 && flags.zero == 1))
-		return (ft_putnbr_pre(n, flags));
-	else
-		return (ft_putnbr(n));
 }
