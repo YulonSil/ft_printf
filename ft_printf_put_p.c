@@ -6,7 +6,7 @@
 /*   By: cclaude <cclaude@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 12:50:49 by cclaude           #+#    #+#             */
-/*   Updated: 2019/11/01 16:36:21 by cclaude          ###   ########.fr       */
+/*   Updated: 2019/11/01 17:29:35 by cclaude          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ int		ft_memlen(unsigned long n)
 
 int		ft_putmem_prewid(unsigned long n, struct s_flgs flags)
 {
-	char	*set;
-	int		i;
 	int		printed;
 	int		padding;
 	int		count;
@@ -49,8 +47,6 @@ int		ft_putmem_prewid(unsigned long n, struct s_flgs flags)
 
 int		ft_putmem_wid(unsigned long n, struct s_flgs flags)
 {
-	char	*set;
-	int		i;
 	int		printed;
 	int		padding;
 
@@ -62,7 +58,6 @@ int		ft_putmem_wid(unsigned long n, struct s_flgs flags)
 		write(1, " ", 1);
 		printed++;
 	}
-	set = "0123456789abcdef";
 	printed += ft_putmem(n, 1);
 	while (flags.minus == 1 && padding-- > 0)
 	{

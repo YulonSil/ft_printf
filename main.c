@@ -7,6 +7,7 @@ int	main(void)
 	unsigned int	u;
 
 	u = 3748392018;
+	(void)p;
 	printf("\n");
 	printf("Real printf\n");
 	printf("\033[33m[");

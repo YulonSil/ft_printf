@@ -6,7 +6,7 @@
 /*   By: cclaude <cclaude@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 17:18:32 by cclaude           #+#    #+#             */
-/*   Updated: 2019/11/01 17:05:17 by cclaude          ###   ########.fr       */
+/*   Updated: 2019/11/01 17:26:29 by cclaude          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		func_branch(const char *s, int *i, va_list args)
 	else if (s[*i] == 's')
 		printed = ft_print_str(va_arg(args, char *), flags);
 	else if (s[*i] == 'p')
-		printed = ft_print_mem(va_arg(args, unsigned long), 1, flags);
+		printed = ft_print_mem(va_arg(args, unsigned long), flags);
 	else if (s[*i] == 'd' || s[*i] == 'i')
 		printed = ft_print_nbr(va_arg(args, int), flags);
 	else if (s[*i] == 'u')

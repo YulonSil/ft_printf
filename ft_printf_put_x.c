@@ -6,7 +6,7 @@
 /*   By: cclaude <cclaude@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 16:21:24 by cclaude           #+#    #+#             */
-/*   Updated: 2019/11/01 17:07:54 by cclaude          ###   ########.fr       */
+/*   Updated: 2019/11/01 17:25:42 by cclaude          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int		ft_puthex_wid(unsigned int n, struct s_flgs flags, int cap)
 	return (printed);
 }
 
-int	ft_puthex(unsigned int n, int cap)
+int		ft_puthex(unsigned int n, int cap)
 {
 	char	*set;
 	int		printed;

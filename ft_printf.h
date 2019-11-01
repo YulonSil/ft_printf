@@ -6,7 +6,7 @@
 /*   By: cclaude <cclaude@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 22:07:57 by cclaude           #+#    #+#             */
-/*   Updated: 2019/11/01 17:08:33 by cclaude          ###   ########.fr       */
+/*   Updated: 2019/11/01 17:28:13 by cclaude          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int		ft_puthex(unsigned int n, int cap);
 
 int		ft_print_char(char c, struct s_flgs flags);
 int		ft_print_str(char *s, struct s_flgs flags);
-int		ft_print_mem(unsigned long n, int start, struct s_flgs flags);
+int		ft_print_mem(unsigned long n, struct s_flgs flags);
 
 int		ft_print_nbr(long n, struct s_flgs flags);
 int		ft_print_hex(unsigned int n, struct s_flgs flags, int cap);
