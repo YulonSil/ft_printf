@@ -6,7 +6,7 @@
 /*   By: cclaude <cclaude@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 16:21:24 by cclaude           #+#    #+#             */
-/*   Updated: 2019/11/01 17:25:42 by cclaude          ###   ########.fr       */
+/*   Updated: 2019/11/02 17:21:18 by cclaude          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int		ft_puthex_pre(unsigned int n, struct s_flgs flags, int cap)
 
 	printed = 0;
 	count = (flags.dot == 1) ? flags.precision : flags.width;
-	count -= (n > 0) ? ft_hexlen(n) : ft_hexlen(n) - 1;
+	count -= (n >= 0) ? ft_hexlen(n) : ft_hexlen(n) - 1;
 	if (n < 0)
 	{
 		write(1, "-", 1);

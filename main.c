@@ -12,7 +12,7 @@ int	main(void)
 	printf("Real printf\n");
 	printf("\033[33m[");
 
-	ret = printf("%X", -42);
+	ret = printf("%.3o", 0);
 
 	printf("]\n\033[0m");
 	printf("Returned : %d\n\n", ret);
@@ -20,7 +20,7 @@ int	main(void)
 	printf("\033[33m[");
 	fflush(stdout);
 
-	ret = ft_printf("%X", -42);
+	ret = ft_printf("%.3o", 0);
 
 	printf("]\n\033[0m");
 	printf("Returned : %d\n\n", ret);

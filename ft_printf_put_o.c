@@ -6,7 +6,7 @@
 /*   By: cclaude <cclaude@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 19:56:57 by cclaude           #+#    #+#             */
-/*   Updated: 2019/11/01 20:05:28 by cclaude          ###   ########.fr       */
+/*   Updated: 2019/11/02 17:20:40 by cclaude          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int		ft_putoct_pre(unsigned int n, struct s_flgs flags)
 
 	printed = 0;
 	count = (flags.dot == 1) ? flags.precision : flags.width;
-	count -= (n > 0) ? ft_octlen(n) : ft_octlen(n) - 1;
+	count -= (n >= 0) ? ft_octlen(n) : ft_octlen(n) - 1;
 	if (n < 0)
 	{
 		write(1, "-", 1);
