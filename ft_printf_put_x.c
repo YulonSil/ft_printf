@@ -6,7 +6,7 @@
 /*   By: cclaude <cclaude@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 16:21:24 by cclaude           #+#    #+#             */
-/*   Updated: 2019/11/02 17:21:18 by cclaude          ###   ########.fr       */
+/*   Updated: 2020/06/01 15:30:23 by cclaude          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,12 @@ int		ft_puthex_prewid(unsigned int n, struct s_flgs flags, int cap)
 
 	printed = 0;
 	count = flags.precision - ft_hexlen(n);
-	count += (n < 0) ? 1 : 0;
 	count = (count > 0) ? count : 0;
 	padding = flags.width - ft_hexlen(n) - count;
 	padding = (padding > 0) ? padding : 0;
 	printed += padding + count + ft_hexlen(n);
 	while (flags.minus == 0 && padding-- > 0)
 		write(1, " ", 1);
-	if (n < 0)
-	{
-		write(1, "-", 1);
-		n = -n;
-	}
 	while (count-- > 0)
 		write(1, "0", 1);
 	ft_puthex(n, cap);
@@ -62,13 +56,7 @@ int		ft_puthex_pre(unsigned int n, struct s_flgs flags, int cap)
 
 	printed = 0;
 	count = (flags.dot == 1) ? flags.precision : flags.width;
-	count -= (n >= 0) ? ft_hexlen(n) : ft_hexlen(n) - 1;
-	if (n < 0)
-	{
-		write(1, "-", 1);
-		n = -n;
-		printed++;
-	}
+	count -= ft_hexlen(n);
 	while (count-- > 0)
 	{
 		write(1, "0", 1);
