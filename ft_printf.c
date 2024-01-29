@@ -46,6 +46,8 @@ int		ft_printf(const char *string, ...)
 	int		i;
 	int		printed;
 
+	if (string == NULL)
+		return (-1);
 	va_start(args, string);
 	i = 0;
 	printed = 0;
@@ -54,10 +56,7 @@ int		ft_printf(const char *string, ...)
 		if (string[i] == '%')
 			printed += func_branch(string, &i, args);
 		else
-		{
-			write(1, &string[i++], 1);
-			printed++;
-		}
+			printed += write(1, &string[i++], 1);
 	}
 	va_end(args);
 	return (printed);
